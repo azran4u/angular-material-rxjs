@@ -24,7 +24,10 @@ export class GithubRepositoriesTableComponent
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['name', 'author', 'numOfCommits', 'size'];
   subscription: Subscription;
-
+  loading: boolean = false;
+  error: any;
+  errors: any;
+  showSpinner: boolean = true;
   constructor(private githubService: GithubService) {
     this.dataSource = new MatTableDataSource<GithubRepository>();
   }
@@ -32,9 +35,13 @@ export class GithubRepositoriesTableComponent
   refresh() {
     this.subscription = this.githubService
       .getRepositories()
-      .subscribe((data) => {
-        this.dataSource.data = data;
+      .subscribe((res) => {
+        this.dataSource.data = res.data;
+        this.loading = res.loading;
+        this.error = res.error;
+        this.errors = res.errors;
         this.dataSource.sort = this.sort;
+        this.showSpinner = this.loading || this.error || this.errors;
       });
   }
 

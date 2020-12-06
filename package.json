@@ -27,6 +27,7 @@
     "apollo-link": "^1.2.14",
     "apollo-link-context": "^1.0.20",
     "graphql": "^15.0.0",
+    "react": "^17.0.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

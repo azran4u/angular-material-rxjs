@@ -22,15 +22,14 @@
       (openedChange)="openedChange($event)"
       (closedStart)="closedStart($event)"
     >
-      <button mat-icon-button (click)="snav.toggle()" class="sidenav-item">
-        <span class="sidenav-item-text">Login</span>
-        <mat-icon class="sidenav-item-icon">login</mat-icon>
-      </button>
+    <button mat-icon-button (click)="snav.toggle()" class="sidenav-item">
+      <span class="sidenav-item-text">Login</span>
+      <mat-icon class="sidenav-item-icon">login</mat-icon>
+    </button>
     </mat-sidenav>
 
     <mat-sidenav-content class="main-content">
-      <mat-icon>home</mat-icon>
-      <mat-icon>menu</mat-icon>
+      <app-github-repositories-table></app-github-repositories-table>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

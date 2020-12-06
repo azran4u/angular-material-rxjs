@@ -6,5 +6,10 @@
     "types": ["jasmine"]
   },
   "files": [],
-  "include": ["src/**/*.d.ts", "src/**/*"]
+  "include": ["src/**/*.d.ts", "src/**/*"],
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.*",
+    "src/environments/environment.prod.ts"
+  ]
 }

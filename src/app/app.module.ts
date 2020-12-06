@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
+import { GithubRepositoriesTableComponent } from './github-repositories-table/github-repositories-table.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GithubRepositoriesTableComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

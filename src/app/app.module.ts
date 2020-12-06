@@ -7,9 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { GithubRepositoriesTableComponent } from './github-repositories-table/github-repositories-table.component';
+import { FileSizePipe } from './pipes/file.size.pipe/file-size.pipe';
 
 @NgModule({
-  declarations: [AppComponent, GithubRepositoriesTableComponent],
+  declarations: [AppComponent, GithubRepositoriesTableComponent, FileSizePipe],
   imports: [
     BrowserModule,
     AppRoutingModule,

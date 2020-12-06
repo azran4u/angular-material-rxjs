@@ -7,12 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-material-rxjs';
-
-  openedChange(event: boolean) {
-    console.log(`sidenav openedChange changed value=${event}`);
-  }
-
-  closedStart(event: void) {
-    console.log(`sidenav closedStart changed value=${event}`);
-  }
 }

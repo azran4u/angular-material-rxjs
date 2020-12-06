@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { GithubRepositoriesTableComponent } from './github-repositories-table/github-repositories-table.component';
 import { FileSizePipe } from './pipes/file.size.pipe/file-size.pipe';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, GithubRepositoriesTableComponent, FileSizePipe],
@@ -16,6 +18,8 @@ import { FileSizePipe } from './pipes/file.size.pipe/file-size.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

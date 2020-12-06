@@ -4,9 +4,12 @@ import {
   ViewChild,
   OnChanges,
   SimpleChanges,
+  OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { GithubRepository } from '../model/github.repository.model';
 import { GithubService } from '../services/github.service';
 
@@ -16,25 +19,38 @@ import { GithubService } from '../services/github.service';
   styleUrls: ['./github-repositories-table.component.less'],
 })
 export class GithubRepositoriesTableComponent
-  implements AfterViewInit, OnChanges {
+  implements AfterViewInit, OnChanges, OnInit, OnDestroy {
   dataSource: MatTableDataSource<GithubRepository>;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['name', 'author', 'numOfCommits', 'size'];
+  subscription: Subscription;
 
   constructor(private githubService: GithubService) {
-    this.updateTableData();
+    this.dataSource = new MatTableDataSource<GithubRepository>();
   }
 
-  updateTableData() {
-    this.dataSource = new MatTableDataSource(
-      this.githubService.getRepositories()
-    );
+  refresh() {
+    this.subscription = this.githubService
+      .getRepositories()
+      .subscribe((data) => {
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+      });
   }
+
+  ngOnInit(): void {
+    this.refresh();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    this.updateTableData();
+    this.refresh();
   }
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    this.refresh();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

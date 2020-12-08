@@ -93,6 +93,6 @@ const modules = [
 @NgModule({
   declarations: [],
   imports: [CommonModule, ...modules],
-  exports: [MatSliderModule, ...modules],
+  exports: [...modules],
 })
 export class MaterialModule {}

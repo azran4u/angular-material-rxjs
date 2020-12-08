@@ -4,7 +4,7 @@ import { GithubRepository } from '../model/github.repository.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from '@apollo/client/core';
-import { ConfigService } from '../../services/config.service';
+
 import _ from 'lodash';
 
 export interface GithubQueryViewerRepository {

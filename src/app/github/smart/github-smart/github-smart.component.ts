@@ -10,15 +10,15 @@ import {
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { GithubRepository } from '../model/github.repository.model';
-import { GithubService } from '../services/github.service';
+import { GithubRepository } from '../../model/github.repository.model';
+import { GithubService } from '../../services/github.service';
 
 @Component({
-  selector: 'app-github-repositories-table',
-  templateUrl: './github-repositories-table.component.html',
-  styleUrls: ['./github-repositories-table.component.less'],
+  selector: 'app-github-smart',
+  templateUrl: './github-smart.component.html',
+  styleUrls: ['./github-smart.component.less'],
 })
-export class GithubRepositoriesTableComponent
+export class GithubSmartComponent
   implements AfterViewInit, OnChanges, OnInit, OnDestroy {
   dataSource: MatTableDataSource<GithubRepository>;
   @ViewChild(MatSort) sort: MatSort;

@@ -1,4 +1,4 @@
-<div *ngIf="errors || error; else errorTmpl">
+<div *ngIf="!error; else errorTmpl">
   <div *ngIf="!loading; else spinner">
     <app-github-repositories-table
       [data]="data"
@@ -7,11 +7,9 @@
 </div>
 
 <ng-template #errorTmpl>
-  <span class="error-message">Error accessing github</span>
+  <span class="error-message">Error accessing github - {{ error }}</span>
 </ng-template>
 
 <ng-template #spinner>
-  <div class="spinner">    
-    <mat-spinner></mat-spinner>
-  </div>
+  <mat-spinner class="spinner"></mat-spinner>
 </ng-template>

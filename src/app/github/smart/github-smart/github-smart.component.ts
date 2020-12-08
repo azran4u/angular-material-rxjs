@@ -20,25 +20,21 @@ export class GithubSmartComponent
   data: GithubRepository[];
   subscription: Subscription;
   loading: boolean = false;
-  error: any;
-  errors: any;
-  showSpinner: boolean = true;
+  error: string = '';
 
   constructor(private githubService: GithubService) {}
 
   refresh() {
-    this.subscription = this.githubService
-      .getRepositories()
-      .subscribe((res) => {
+    this.subscription = this.githubService.getRepositories().subscribe(
+      (res) => {
         this.data = res.data;
         this.loading = res.loading;
-        this.error = res.error;
-        this.errors = res.errors;
-        this.showSpinner = this.loading || this.error || this.errors;
-      });
-    if (this.errors) {
-      // console.error(`${this.errors}`);
-    }
+      },
+      (error) => {
+        console.error(`${error}`);
+        this.error = error?.message ?? 'network error';
+      }
+    );
   }
 
   ngOnInit(): void {

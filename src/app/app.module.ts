@@ -6,14 +6,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
-import { FileSizePipe } from './pipes/file.size.pipe/file-size.pipe';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { GithubModule } from './github/github.module';
 
 @NgModule({
-  declarations: [AppComponent, FileSizePipe],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

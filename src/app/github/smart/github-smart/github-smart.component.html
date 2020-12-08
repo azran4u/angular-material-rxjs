@@ -1,5 +1,5 @@
 <div *ngIf="!showSpinner; else spinner">
-  <app-github-repositories-table></app-github-repositories-table>
+  <app-github-repositories-table [data]="data"></app-github-repositories-table>
 </div>
 
 <ng-template #spinner>

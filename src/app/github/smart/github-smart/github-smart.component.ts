@@ -20,27 +20,23 @@ import { GithubService } from '../../services/github.service';
 })
 export class GithubSmartComponent
   implements AfterViewInit, OnChanges, OnInit, OnDestroy {
-  dataSource: MatTableDataSource<GithubRepository>;
-  @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['name', 'author', 'numOfCommits', 'size'];
+  data: GithubRepository[];
   subscription: Subscription;
   loading: boolean = false;
   error: any;
   errors: any;
   showSpinner: boolean = true;
-  constructor(private githubService: GithubService) {
-    this.dataSource = new MatTableDataSource<GithubRepository>();
-  }
+
+  constructor(private githubService: GithubService) {}
 
   refresh() {
     this.subscription = this.githubService
       .getRepositories()
       .subscribe((res) => {
-        this.dataSource.data = res.data;
+        this.data = res.data;
         this.loading = res.loading;
         this.error = res.error;
         this.errors = res.errors;
-        this.dataSource.sort = this.sort;
         this.showSpinner = this.loading || this.error || this.errors;
       });
   }

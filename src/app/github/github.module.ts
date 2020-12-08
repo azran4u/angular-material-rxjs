@@ -3,8 +3,23 @@ import { CommonModule } from '@angular/common';
 import { GithubRepositoriesTableComponent } from './view/github-repositories-table/github-repositories-table.component';
 import { GithubSmartComponent } from './smart/github-smart/github-smart.component';
 import { GithubService } from './services/github.service';
+import { MaterialModule } from '../material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { FileSizePipe } from './pipes/file-size.pipe';
 @NgModule({
-  declarations: [GithubRepositoriesTableComponent, GithubSmartComponent],
-  imports: [CommonModule],
+  declarations: [
+    GithubRepositoriesTableComponent,
+    GithubSmartComponent,
+    FileSizePipe,
+  ],
+  providers: [GithubService],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+  ],
+  exports: [GithubSmartComponent],
 })
 export class GithubModule {}

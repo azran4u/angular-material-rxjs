@@ -70,6 +70,7 @@ export class GithubService {
     return this.apollo
       .watchQuery<GithubQueryViewerResult>({
         query: this.query,
+        errorPolicy: 'all'
       })
       .valueChanges.pipe(
         map((res) => {

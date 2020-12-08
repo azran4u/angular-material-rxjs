@@ -1,9 +1,17 @@
-<div *ngIf="!showSpinner; else spinner">
-  <app-github-repositories-table [data]="data"></app-github-repositories-table>
+<div *ngIf="errors || error; else errorTmpl">
+  <div *ngIf="!loading; else spinner">
+    <app-github-repositories-table
+      [data]="data"
+    ></app-github-repositories-table>
+  </div>
 </div>
 
+<ng-template #errorTmpl>
+  <span class="error-message">Error accessing github</span>
+</ng-template>
+
 <ng-template #spinner>
-  <div class="spinner">
+  <div class="spinner">    
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>

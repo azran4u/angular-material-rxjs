@@ -1,14 +1,11 @@
 import {
   Component,
   AfterViewInit,
-  ViewChild,
   OnChanges,
   SimpleChanges,
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { GithubRepository } from '../../model/github.repository.model';
 import { GithubService } from '../../services/github.service';
@@ -39,6 +36,9 @@ export class GithubSmartComponent
         this.errors = res.errors;
         this.showSpinner = this.loading || this.error || this.errors;
       });
+    if (this.errors) {
+      // console.error(`${this.errors}`);
+    }
   }
 
   ngOnInit(): void {

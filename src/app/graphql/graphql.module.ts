@@ -22,6 +22,11 @@ export function createApollo(
   return {
     link: http,
     cache,
+    defaultOptions: {
+      watchQuery: {
+        errorPolicy: 'all',
+      },
+    },
   };
 }
 

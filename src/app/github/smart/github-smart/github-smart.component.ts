@@ -31,7 +31,6 @@ export class GithubSmartComponent
         this.loading = res.loading;
       },
       (error) => {
-        console.error(`${error}`);
         this.error = error?.message ?? 'network error';
       }
     );

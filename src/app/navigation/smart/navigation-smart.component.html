@@ -1,0 +1,8 @@
+<div class="container">
+  <app-toolbar (menuClicked)="menuClickedEvent()" class="toolbar"></app-toolbar>
+  <app-navbar
+    [open]="isNavBarOpen"
+    (login)="loginEvent()"
+    class="navbar"
+  ></app-navbar>
+</div>

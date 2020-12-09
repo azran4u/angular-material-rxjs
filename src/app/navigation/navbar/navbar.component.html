@@ -1,0 +1,12 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #snav mode="side" opened class="sidenav">
+    <button mat-icon-button (click)="loginClicked()" class="sidenav-item">
+      <span class="sidenav-item-text">Login</span>
+      <mat-icon class="sidenav-item-icon">login</mat-icon>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content" (click)="snav.close()">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

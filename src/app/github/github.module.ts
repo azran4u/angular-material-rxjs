@@ -5,8 +5,22 @@ import { GithubSmartComponent } from './smart/github-smart/github-smart.componen
 import { GithubService } from './services/github.service';
 import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { FileSizePipe } from './pipes/file-size.pipe';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {
+    path: 'github',
+    pathMatch: 'full',
+    component: GithubSmartComponent,
+    children: [
+      {
+        path: '',
+        component: GithubSmartComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +33,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
     CommonModule,
     MaterialModule,
     BrowserAnimationsModule,
-    BrowserModule,
+    RouterModule.forChild(routes),
   ],
   exports: [GithubSmartComponent],
 })

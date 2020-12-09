@@ -9,9 +9,16 @@ import { GraphQLModule } from './graphql/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { GithubModule } from './github/github.module';
-import { RoutingModule } from './routing/routing.module';
-import { HomeModule } from './home/home.module';
-import { NavigationModule } from './navigation/navigation.module';
+import { RouterModule, Routes } from '@angular/router';
+import { GithubSmartComponent } from './github/smart/github-smart/github-smart.component';
+
+const routes: Routes = [
+  {
+    path: 'github',
+    pathMatch: 'full',
+    component: GithubSmartComponent,
+  },
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,12 +26,10 @@ import { NavigationModule } from './navigation/navigation.module';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    RouterModule.forRoot(routes),
     GraphQLModule,
     HttpClientModule,
     GithubModule,
-    RoutingModule,
-    HomeModule,
-    NavigationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

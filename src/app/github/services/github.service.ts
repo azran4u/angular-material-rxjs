@@ -70,22 +70,24 @@ export class GithubService {
     return this.apollo
       .watchQuery<GithubQueryViewerResult>({
         query: this.query,
-        errorPolicy: 'all'
+        errorPolicy: 'all',
       })
       .valueChanges.pipe(
         map((res) => {
           return {
             ...res,
-            data: _.without(res.data.viewer.topRepositories.nodes, null).map(
-              (v) => {
-                return {
-                  author: v.owner.login,
-                  name: v.name,
-                  numOfCommits: 0,
-                  size: v.diskUsage * 1024, // KB to bytes
-                } as GithubRepository;
-              }
-            ),
+            data: _.without(
+              res.data.viewer.topRepositories.nodes,
+              null,
+              undefined
+            ).map((v) => {
+              return {
+                author: v.owner.login,
+                name: v.name,
+                numOfCommits: 0,
+                size: v.diskUsage * 1024, // KB to bytes
+              } as GithubRepository;
+            }),
           } as ApolloQueryResult<GithubRepository[]>;
         })
       );

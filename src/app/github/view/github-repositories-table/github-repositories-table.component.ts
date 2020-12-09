@@ -29,7 +29,7 @@ export class GithubRepositoriesTableComponent
   }
 
   refresh() {
-    this.dataSource.data = this.data;
+    this.dataSource.data = this.data ?? [];
     this.dataSource.sort = this.sort;
   }
 

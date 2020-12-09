@@ -17,34 +17,25 @@
     <mat-sidenav #snav mode="side" opened class="sidenav">
       <mat-nav-list class="nav-list">
         <!-- login -->
-        <button
-          [routerLink]="'/login'"
-          mat-icon-button
-          (click)="login()"
-          class="sidenav-item"
-        >
+        <button [routerLink]="'login'" mat-icon-button class="sidenav-item">
           <span class="sidenav-item-text">Login</span>
           <mat-icon class="sidenav-item-icon">login</mat-icon>
         </button>
         <!-- github -->
-        <button [routerLink]="'/github'" mat-icon-button class="sidenav-item">
+        <button [routerLink]="'github'" mat-icon-button class="sidenav-item">
           <span class="sidenav-item-text">Github</span>
-          <mat-icon class="sidenav-item-icon" svgIcon="github1"></mat-icon>
+          <mat-icon class="sidenav-item-icon" svgIcon="github"></mat-icon>
         </button>
         <!-- close -->
-        <button
-          [routerLink]="''"
-          mat-icon-button
-          (click)="snav.toggle()"
-          class="sidenav-item"
-        >
+        <button mat-icon-button (click)="snav.toggle()" class="sidenav-item">
           <span class="sidenav-item-text">Close</span>
           <mat-icon class="sidenav-item-icon">close</mat-icon>
         </button>
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content class="main-content" (click)="snav.close()">
+    <!-- <mat-sidenav-content class="main-content" (click)="snav.close()"> -->
+    <mat-sidenav-content class="main-content">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

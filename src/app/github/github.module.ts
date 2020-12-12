@@ -8,20 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [
-  {
-    path: 'github',
-    pathMatch: 'full',
-    component: GithubSmartComponent,
-    children: [
-      {
-        path: '',
-        component: GithubSmartComponent,
-      },
-    ],
-  },
-];
-
 @NgModule({
   declarations: [
     GithubRepositoriesTableComponent,
@@ -29,12 +15,7 @@ const routes: Routes = [
     FileSizePipe,
   ],
   providers: [GithubService],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    BrowserAnimationsModule,
-    RouterModule.forChild(routes),
-  ],
+  imports: [CommonModule, MaterialModule, BrowserAnimationsModule],
   exports: [GithubSmartComponent],
 })
 export class GithubModule {}

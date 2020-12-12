@@ -13,25 +13,34 @@
     </button>
   </mat-toolbar>
 
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #snav mode="side" opened class="sidenav">
-      <mat-nav-list class="nav-list">
-        <!-- login -->
-        <button [routerLink]="'login'" mat-icon-button class="sidenav-item">
-          <span class="sidenav-item-text">Login</span>
-          <mat-icon class="sidenav-item-icon">login</mat-icon>
-        </button>
+  <mat-sidenav-container autosize class="sidenav-container" autosize>
+    <mat-sidenav #snav mode="side" opened>
+      <!-- <mat-nav-list> -->
+      <div class="up">
         <!-- github -->
         <button [routerLink]="'github'" mat-icon-button class="sidenav-item">
-          <span class="sidenav-item-text">Github</span>
           <mat-icon class="sidenav-item-icon" svgIcon="github"></mat-icon>
+          <span class="sidenav-item-text">Github</span>
+        </button>
+      </div>
+      <div class="down">
+        <!-- login -->
+        <button [routerLink]="'login'" mat-icon-button class="sidenav-item">
+          <mat-icon class="sidenav-item-icon">login</mat-icon>
+          <span class="sidenav-item-text">Login</span>
+        </button>
+        <!-- logout -->
+        <button [routerLink]="'logout'" mat-icon-button class="sidenav-item">
+          <mat-icon class="sidenav-item-icon">logout</mat-icon>
+          <span class="sidenav-item-text">Logout</span>
         </button>
         <!-- close -->
         <button mat-icon-button (click)="snav.toggle()" class="sidenav-item">
-          <span class="sidenav-item-text">Close</span>
           <mat-icon class="sidenav-item-icon">close</mat-icon>
+          <span class="sidenav-item-text">Close</span>
         </button>
-      </mat-nav-list>
+      </div>
+      <!-- </mat-nav-list> -->
     </mat-sidenav>
 
     <!-- <mat-sidenav-content class="main-content" (click)="snav.close()"> -->

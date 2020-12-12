@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 import { LoginData } from './login.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  constructor() {}
 
-  constructor() { }
-
-  login(login: LoginData){
+  login(login: LoginData) {
     localStorage.setItem('username', login.username);
   }
 
-  logout(username: string){
+  logout() {
     localStorage.removeItem('username');
   }
 }

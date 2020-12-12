@@ -14,23 +14,24 @@ import { GithubSmartComponent } from './github/smart/github-smart/github-smart.c
 import { LoginModule } from './login/login.module';
 import { LoginSmartComponent } from './login/login-smart/login-smart.component';
 import { AuthGuard } from './auth/auth.guard';
+import { LogoutControllerComponent } from './login/logout-controller/logout-controller.component';
 
 const routes: Routes = [
   {
     path: 'github',
     pathMatch: 'full',
-    canActivate: [AuthGuard],
-    redirectTo: 'github1',
-  },
-  {
-    path: 'github1',
-    pathMatch: 'full',
     component: GithubSmartComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'login',
     pathMatch: 'full',
     component: LoginSmartComponent,
+  },
+  {
+    path: 'logout',
+    pathMatch: 'full',
+    component: LogoutControllerComponent,
   },
 ];
 

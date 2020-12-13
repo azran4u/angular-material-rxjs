@@ -13,7 +13,7 @@
         </mat-form-field>
       </p>
 
-      <p *ngIf="form.get('username').invalid" class="error">
+      <p *ngIf="form.get('username').invalid && loginClicked" class="error">
         username is required with min 1 characters and max of 10 characters.
       </p>
 

@@ -4,6 +4,8 @@ import {
   Output,
   EventEmitter,
   AfterViewInit,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginData } from '../login.model';
@@ -13,9 +15,10 @@ import { LoginData } from '../login.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less'],
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnInit {
   @Input() error: string | null;
   @Output() submitEM = new EventEmitter<LoginData>();
+  loginClicked: boolean = false;
 
   form: FormGroup = new FormGroup({
     username: new FormControl('', [
@@ -25,11 +28,16 @@ export class LoginComponent implements AfterViewInit {
     ]),
   });
 
+  ngOnInit(): void {
+    this.loginClicked = false;
+  }
+
   ngAfterViewInit(): void {}
 
   onSubmit() {
     if (!this.form.invalid) {
       this.submitEM.emit({ username: this.form.get('username').value });
     }
+    this.loginClicked = true;
   }
 }

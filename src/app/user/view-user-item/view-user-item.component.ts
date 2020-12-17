@@ -18,15 +18,18 @@ export class ViewUserItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      username: [null, Validators.required],
+      id: [{ value: this.user.id, disabled: true }, Validators.required],
+      username: ['', Validators.required],
     });
   }
 
   delete() {
+    console.log(`delete id ${this.user.id}`);
     this.deleted.emit();
   }
 
   onSubmit() {
-    console.log(`edit`);
+    const input: User = this.formGroup.getRawValue();
+    console.log(`edit name ${JSON.stringify(input)}`);
   }
 }

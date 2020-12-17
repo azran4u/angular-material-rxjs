@@ -4,7 +4,7 @@ import { ViewUserItemComponent } from './view-user-item/view-user-item.component
 import { UserSmartComponent } from './user-smart/user-smart.component';
 import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ViewUserItemComponent, UserSmartComponent],
@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   exports: [UserSmartComponent],
 })

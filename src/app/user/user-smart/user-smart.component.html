@@ -1,1 +1,8 @@
-<app-view-user-item [user]="user" (deleted)="delete()"></app-view-user-item>
+<div class="container" *ngIf="users$ | async; let users">
+  <app-view-user-item
+    *ngFor="let user of users.data.getAllUsers"
+    [user]="user"
+    (deleted)="delete(user)"
+    (edited)="edit($event)"
+  ></app-view-user-item>
+</div>

@@ -1,23 +1,48 @@
 import { Component, OnInit } from '@angular/core';
+import { ApolloQueryResult } from '@apollo/client/core';
 import { User } from '../user.model';
-
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-user-smart',
   templateUrl: './user-smart.component.html',
   styleUrls: ['./user-smart.component.less'],
 })
 export class UserSmartComponent implements OnInit {
-  user: User;
-  constructor() {
-    this.user = {
-      name: 'hi',
-      id: '1',
-    };
+  users$: Observable<ApolloQueryResult<User[]>>;
+  constructor(private userService: UserService) {
+    this.users$ = this.userService.getAll();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.users$.subscribe((res) => {
+    //   debugger;
+    // });
+  }
 
-  delete() {
-    this.user = undefined;
+  delete(user: User) {
+    console.log(`smart delete ${JSON.stringify(user)}`);
+    this.userService.delete(user.id).subscribe(
+      (res) => {
+        const deletedUser: User = res.data['removeUser'];
+        console.log(`deleted user from backend ${JSON.stringify(deletedUser)}`);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  edit(newUser: User) {
+    console.log(`smart edit user ${JSON.stringify(newUser)}`);
+    this.userService.edit(newUser).subscribe(
+      (res) => {
+        const editedUser: User = res.data['editUser'];
+        console.log(`edited user in backend ${JSON.stringify(editedUser)}`);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

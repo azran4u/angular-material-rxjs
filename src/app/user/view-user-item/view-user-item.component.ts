@@ -19,7 +19,7 @@ export class ViewUserItemComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       id: [{ value: this.user.id, disabled: true }, Validators.required],
-      username: ['', Validators.required],
+      username: [this.user.name, Validators.required],
     });
   }
 
@@ -31,5 +31,10 @@ export class ViewUserItemComponent implements OnInit {
   onSubmit() {
     const input: User = this.formGroup.getRawValue();
     console.log(`edit name ${JSON.stringify(input)}`);
+    this.edited.emit(input);
+  }
+
+  clearUsername() {
+    this.formGroup.get('username').setValue('');
   }
 }

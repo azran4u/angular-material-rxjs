@@ -28,7 +28,7 @@ export class UserService {
 
   delete(id: string): Observable<FetchResult<User>> {
     const mutation = gql`
-      mutation remove($id: String) {
+      mutation remove($id: String!) {
         removeUser(id: $id) {
           id
           name

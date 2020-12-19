@@ -19,7 +19,7 @@ export class ViewUserItemComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
       id: [{ value: this.user.id, disabled: true }, Validators.required],
-      username: [this.user.name, Validators.required],
+      name: [this.user.name, Validators.required],
     });
   }
 
@@ -34,7 +34,7 @@ export class ViewUserItemComponent implements OnInit {
     this.edited.emit(input);
   }
 
-  clearUsername() {
-    this.formGroup.get('username').setValue('');
+  clearName() {
+    this.formGroup.get('name').setValue('');
   }
 }

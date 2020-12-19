@@ -16,3 +16,7 @@
 [1217/232106.190:ERROR:crash_report_database_win.cc(498)] failed to stat report
 [1217/233606.191:ERROR:crash_report_database_win.cc(498)] failed to stat report
 [1217/235106.192:ERROR:crash_report_database_win.cc(498)] failed to stat report
+[1219/220839.838:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[1219/221839.838:ERROR:crash_report_database_win.cc(496)] failed to stat report
+[1219/221839.840:ERROR:filesystem_win.cc(116)] GetFileAttributes C:\Users\EYAL'S~1\AppData\Local\Temp\.profile\Crashpad\reports\0cd3a78a-af82-4205-b6ea-2d67dda52c77.dmp: The system cannot find the file specified. (0x2)
+[1219/221839.841:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

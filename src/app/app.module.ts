@@ -17,6 +17,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { LogoutControllerComponent } from './login/logout-controller/logout-controller.component';
 import { UserModule } from './user/user.module';
 import { UserSmartComponent } from './user/user-smart/user-smart.component';
+import { ViewEncapsulationTutorialModule } from './view-encapsulation-tutorial/view-encapsulation-tutorial.module';
+import { ParentComponent } from './view-encapsulation-tutorial/parent/parent.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,11 @@ const routes: Routes = [
     pathMatch: 'full',
     component: LogoutControllerComponent,
   },
+  {
+    path: 'viewEncapsulationTutorial',
+    pathMatch: 'full',
+    component: ParentComponent,
+  },
 ];
 
 @NgModule({
@@ -55,6 +62,7 @@ const routes: Routes = [
     GithubModule,
     LoginModule,
     UserModule,
+    ViewEncapsulationTutorialModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

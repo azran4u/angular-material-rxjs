@@ -19,6 +19,8 @@ import { UserModule } from './user/user.module';
 import { UserSmartComponent } from './user/user-smart/user-smart.component';
 import { ViewEncapsulationTutorialModule } from './view-encapsulation-tutorial/view-encapsulation-tutorial.module';
 import { ParentComponent } from './view-encapsulation-tutorial/parent/parent.component';
+import { ObservableModule } from './observable/observable.module';
+import { TutorialComponent } from './observable/tutorial/tutorial.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,11 @@ const routes: Routes = [
     pathMatch: 'full',
     component: ParentComponent,
   },
+  {
+    path: 'observable',
+    pathMatch: 'full',
+    component: TutorialComponent,
+  },
 ];
 
 @NgModule({
@@ -63,6 +70,7 @@ const routes: Routes = [
     LoginModule,
     UserModule,
     ViewEncapsulationTutorialModule,
+    ObservableModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

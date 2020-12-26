@@ -29,7 +29,8 @@ export class TutorialComponent implements OnInit {
     });
     this.input$ = this.form.controls['inputText'].valueChanges.pipe(
       tap((value) => console.log(`input changed: ${value}`)),
-      filter((value) => value !== '')
+      filter((value) => !this.form.get('inputText').invalid),
+      tap((value) => console.log(`input changed after filter: ${value}`))
     );
   }
 
@@ -44,7 +45,7 @@ export class TutorialComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.tutorial1();
+    this.tutorial1();
     // this.tutorial2();
     // this.tutorial3();
     // this.tutorial4();
@@ -55,9 +56,8 @@ export class TutorialComponent implements OnInit {
   onClick(event) {
     // this.tutorial6();
     // this.tutorial7();
-
     // this.tutorial9();
-    this.tutorial10();
+    // this.tutorial10();
   }
 
   tutorial1() {

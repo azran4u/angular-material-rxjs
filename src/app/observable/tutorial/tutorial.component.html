@@ -1,11 +1,35 @@
-<div class="button-container">
-  <button
-    mat-raised-button
-    color="primary"
-    id="myButton"
-    class="button"
-    (click)="onClick($event)"
-  >
-    Create Event
-  </button>
+<div class="container">
+  <div class="button">
+    <button
+      mat-raised-button
+      color="primary"
+      id="myButton"
+      (click)="onClick($event)"
+    >
+      Create Event
+    </button>
+  </div>
+
+  <div class="search">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Type here"
+              formControlName="inputText"
+            />
+          </mat-form-field>
+        </p>
+
+        <button type="submit" mat-raised-button>Search</button>
+      </div>
+
+      <p *ngIf="form.get('inputText').invalid" class="error">
+        username is required with min 1 characters and max of 10 characters.
+      </p>
+    </form>
+  </div>
 </div>

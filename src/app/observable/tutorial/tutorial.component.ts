@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, fromEvent, of } from 'rxjs';
+import { Observable, fromEvent, of, Subject, BehaviorSubject } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -49,13 +49,15 @@ export class TutorialComponent implements OnInit {
     // this.tutorial3();
     // this.tutorial4();
     // this.tutorial5();
-
-    this.tutorial8();
+    // this.tutorial8();
   }
 
   onClick(event) {
     // this.tutorial6();
     // this.tutorial7();
+
+    // this.tutorial9();
+    this.tutorial10();
   }
 
   tutorial1() {
@@ -145,5 +147,36 @@ export class TutorialComponent implements OnInit {
       .subscribe((results) => {
         console.log(results);
       });
+  }
+  tutorial9() {
+    const sub = new Subject();
+
+    sub.next(1);
+    sub.subscribe((x) => {
+      console.log('Subscriber A', x);
+    });
+    sub.next(2); // OUTPUT => Subscriber A 2
+    sub.subscribe((x) => {
+      console.log('Subscriber B', x);
+    });
+    sub.next(3); // OUTPUT => Subscriber A 3, Subscriber B 3 (logged from both subscribers)
+  }
+  tutorial10() {
+    const subject = new BehaviorSubject(123);
+
+    // two new subscribers will get initial value => output: 123, 123
+    subject.subscribe((value) => console.log(`Subscriber A ${value}`));
+    subject.subscribe((value) => console.log(`Subscriber B ${value}`));
+
+    // two subscribers will get new value => output: 456, 456
+    subject.next(456);
+
+    // new subscriber will get latest value (456) => output: 456
+    subject.subscribe((value) => console.log(`Subscriber C ${value}`));
+
+    // all three subscribers will get new value => output: 789, 789, 789
+    subject.next(789);
+
+    // output: 123, 123, 456, 456, 456, 789, 789, 789
   }
 }

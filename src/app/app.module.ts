@@ -15,6 +15,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { UserModule } from './user/user.module';
 import { ViewEncapsulationTutorialModule } from './view-encapsulation-tutorial/view-encapsulation-tutorial.module';
 import { ROUTES } from './app.routs';
+import { NgrxTutorialModule } from './ngrx-tutorial/ngrx-tutorial.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,6 +29,7 @@ import { ROUTES } from './app.routs';
     LoginModule,
     UserModule,
     ViewEncapsulationTutorialModule,
+    NgrxTutorialModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

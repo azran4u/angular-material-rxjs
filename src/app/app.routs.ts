@@ -3,6 +3,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { GithubSmartComponent } from './github/smart/github-smart/github-smart.component';
 import { LoginSmartComponent } from './login/login-smart/login-smart.component';
 import { LogoutControllerComponent } from './login/logout-controller/logout-controller.component';
+import { NgrxParentComponent } from './ngrx-tutorial/ngrx-parent/ngrx-parent.component';
 import { RxjsTutorialComponent } from './rxjs-tutorial/rxjs-tutorial/rxjs-tutorial.component';
 import { UserSmartComponent } from './user/user-smart/user-smart.component';
 import { ParentComponent } from './view-encapsulation-tutorial/parent/parent.component';
@@ -39,5 +40,10 @@ export const ROUTES: Routes = [
     path: 'rxjs',
     pathMatch: 'full',
     component: RxjsTutorialComponent,
+  },
+  {
+    path: 'ngrx',
+    pathMatch: 'full',
+    component: NgrxParentComponent,
   },
 ];

@@ -48,7 +48,7 @@ export class RxjsTutorialComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.tutorial1();
+    this.tutorial1();
     // this.tutorial2();
     // this.tutorial3();
     // this.tutorial4();
@@ -61,7 +61,7 @@ export class RxjsTutorialComponent implements OnInit {
     // this.tutorial7();
     // this.tutorial9();
     // this.tutorial10();
-    this.tutorial11();
+    // this.tutorial11();
   }
 
   tutorial1() {

@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="code">
+      <div class="button">
+        <button
+          mat-raised-button
+          color="primary"
+          id="myButton"
+          (click)="onClick($event)"
+        >
+          Create Event
+        </button>
+      </div>
+  
+      <div class="search">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <p>
+              <mat-form-field>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Type here"
+                  formControlName="inputText"
+                />
+              </mat-form-field>
+            </p>
+  
+            <button type="submit" mat-raised-button>Search</button>
+          </div>
+  
+          <p *ngIf="form.get('inputText').invalid" class="error">
+            username is required with min 1 characters and max of 10 characters.
+          </p>
+        </form>
+      </div>
+    </div>
+  
+    <div class="links">
+      <a href="https://www.learnrxjs.io/" mat-menu-item>Learn RxJS</a>
+      <span>Clear examples, explanations, and resources for RxJS</span>
+      <br />
+      <a href="https://rxmarbles.com/" mat-menu-item>RxJS Marbles</a>
+      <span>Interactive diagrams of Rx Observables</span>
+      <br />
+      <a href="https://immerjs.github.io/immer/docs/introduction" mat-menu-item
+        >Immer</a
+      >
+      <span
+        >A tiny package that allows you to work with immutable state in a more
+        convenient way</span
+      >
+    </div>
+  </div>
+  

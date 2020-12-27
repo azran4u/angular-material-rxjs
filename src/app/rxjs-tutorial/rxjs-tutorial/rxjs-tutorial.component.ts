@@ -9,14 +9,17 @@ import {
   switchMap,
   tap,
   delay,
+  concatMap,
+  timeout,
+  catchError,
 } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-tutorial',
-  templateUrl: './tutorial.component.html',
-  styleUrls: ['./tutorial.component.less'],
+  selector: 'app-rxjs-tutorial',
+  templateUrl: './rxjs-tutorial.component.html',
+  styleUrls: ['./rxjs-tutorial.component.less'],
 })
-export class TutorialComponent implements OnInit {
+export class RxjsTutorialComponent implements OnInit {
   form: FormGroup;
   input$: Observable<string>;
 
@@ -45,7 +48,7 @@ export class TutorialComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tutorial1();
+    // this.tutorial1();
     // this.tutorial2();
     // this.tutorial3();
     // this.tutorial4();
@@ -58,6 +61,7 @@ export class TutorialComponent implements OnInit {
     // this.tutorial7();
     // this.tutorial9();
     // this.tutorial10();
+    this.tutorial11();
   }
 
   tutorial1() {
@@ -178,5 +182,27 @@ export class TutorialComponent implements OnInit {
     subject.next(789);
 
     // output: 123, 123, 456, 456, 456, 789, 789, 789
+  }
+
+  makeRequest(timeToDelay) {
+    return of('Request Complete!').pipe(delay(timeToDelay));
+  }
+
+  tutorial11() {
+    of(4000, 3000, 2000)
+      .pipe(
+        concatMap((duration) =>
+          this.makeRequest(duration).pipe(
+            timeout(2500),
+            catchError((error) => of(`Request timed out after: ${duration}`))
+          )
+        )
+      )
+      /*
+       *  "Request timed out after: 4000"
+       *  "Request timed out after: 3000"
+       *  "Request Complete!"
+       */
+      .subscribe((val) => console.log(val));
   }
 }

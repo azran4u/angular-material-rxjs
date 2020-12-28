@@ -1,0 +1,19 @@
+<div *ngIf="{ count: count$ | async } as context">
+    <div
+      *ngIf="context.count !== undefined && context.count !== null; else spinner"
+    >
+      <app-counter-view
+        [counter]="context.count"
+        (increment)="increment()"
+        (decrement)="decrement()"
+        (reset)="reset()"
+      ></app-counter-view>
+    </div>
+  </div>
+  
+  <ng-template #spinner>
+    <div class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  </ng-template>
+  

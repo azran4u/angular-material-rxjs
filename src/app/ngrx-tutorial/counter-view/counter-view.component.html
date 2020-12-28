@@ -1,0 +1,17 @@
+<div class="container">
+  <button mat-button disabled>Counter: {{ counter }}</button>
+
+  <div class="buttons">
+    <button mat-raised-button color="primary" (click)="onIncrement()">
+      Increment
+    </button>
+
+    <div class="center">
+      <button mat-raised-button color="primary" (click)="onDecrement()">
+        Decrement
+      </button>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="onReset()">Reset</button>
+  </div>
+</div>

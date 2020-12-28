@@ -7,9 +7,12 @@ import { counterReducer } from './ngrx-tutorial.reducer';
 import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CounterViewComponent } from './counter-view/counter-view.component';
+import { SmartOneComponent } from './smart-one/smart-one.component';
+import { SmartTwoComponent } from './smart-two/smart-two.component';
 
 @NgModule({
-  declarations: [NgrxParentComponent],
+  declarations: [NgrxParentComponent, CounterViewComponent, SmartOneComponent, SmartTwoComponent],
   imports: [
     CommonModule,
     MaterialModule,

@@ -1,26 +1,4 @@
-<div
-  class="container"
-  *ngIf="{ count: count$ | async } as context; else spinner"
->
-  <button mat-button disabled>Counter: {{ context.count }}</button>
-
-  <div class="buttons">
-    <button mat-raised-button color="primary" (click)="increment()">
-      Increment
-    </button>
-
-    <div class="center">
-      <button mat-raised-button color="primary" (click)="decrement()">
-        Decrement
-      </button>
-    </div>
-
-    <button mat-raised-button color="primary" (click)="reset()">Reset</button>
-  </div>
+<div class="container">
+  <app-smart-one> </app-smart-one>
+  <app-smart-two></app-smart-two>
 </div>
-
-<ng-template #spinner>
-  <div class="spinner">
-    <mat-spinner></mat-spinner>
-  </div>
-</ng-template>

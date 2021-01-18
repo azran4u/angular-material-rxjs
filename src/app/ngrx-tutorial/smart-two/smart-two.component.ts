@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { decrement, increment, reset } from '../ngrx-tutorial.actions';
+import { map } from 'rxjs/operators';
+import { decrement, increment, reset } from '../store/ngrx-tutorial.actions';
+import { CountState, CountStore } from '../store/ngrx-tutorial.reducer';
 
 @Component({
   selector: 'app-smart-two',
@@ -11,8 +13,8 @@ import { decrement, increment, reset } from '../ngrx-tutorial.actions';
 export class SmartTwoComponent implements OnInit {
   count$: Observable<number>;
 
-  constructor(private store: Store<{ count: number }>) {
-    this.count$ = this.store.select('count');
+  constructor(private store: Store<CountStore>) {
+    this.count$ = this.store.select('count').pipe(map((x) => x.counter));
   }
   ngOnInit(): void {}
 

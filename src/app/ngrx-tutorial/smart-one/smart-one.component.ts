@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { decrement, increment, reset } from '../ngrx-tutorial.actions';
+import { delay, map } from 'rxjs/operators';
+import { decrement, increment, reset } from '../store/ngrx-tutorial.actions';
+import { CountState, CountStore } from '../store/ngrx-tutorial.reducer';
 
 @Component({
   selector: 'app-smart-one',
@@ -12,8 +13,11 @@ import { decrement, increment, reset } from '../ngrx-tutorial.actions';
 export class SmartOneComponent implements OnInit {
   count$: Observable<number>;
 
-  constructor(private store: Store<{ count: number }>) {
-    this.count$ = this.store.select('count').pipe(delay(1000));
+  constructor(private store: Store<CountStore>) {
+    this.count$ = this.store.select('count').pipe(
+      delay(1000),
+      map((x) => x.counter)
+    );
   }
   ngOnInit(): void {}
 

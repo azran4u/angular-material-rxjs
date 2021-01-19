@@ -1,13 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { increment, decrement, reset } from './ngrx-tutorial.actions';
+import { CountState } from './count.model';
+import { increment, decrement, reset } from './counter.actions';
 
-export interface CountState {
-  counter: number;
-}
 
-export interface CountStore {
-  count: CountState;
-}
 
 export const initialState: CountState = {
   counter: 0,

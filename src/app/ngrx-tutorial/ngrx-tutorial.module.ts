@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { NgrxParentComponent } from './ngrx-parent/ngrx-parent.component';
 
 import { StoreModule } from '@ngrx/store';
-import { counterReducer, CountStore } from './store/ngrx-tutorial.reducer';
+import { counterReducer } from './store/counter.reducer';
 import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CounterViewComponent } from './counter-view/counter-view.component';
 import { SmartOneComponent } from './smart-one/smart-one.component';
 import { SmartTwoComponent } from './smart-two/smart-two.component';
+import { CountStore } from './store/count.model';
 
 @NgModule({
   declarations: [

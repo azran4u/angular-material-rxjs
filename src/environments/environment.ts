@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   github: {
     uri: 'https://api.github.com/graphql',
-    token: 'de62dcb1a3c24a257e33809be1ddc9394a17b9de',
+    token: '4764ec22c8f0f55834da6f9d3be19756ce0061b8',
+  },
+  user: {
+    uri: 'http://localhost:4000/',
   },
 };
 

@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
-import { GraphQLModule } from './graphql/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { GithubModule } from './github/github.module';
@@ -16,6 +15,8 @@ import { UserModule } from './user/user.module';
 import { ViewEncapsulationTutorialModule } from './view-encapsulation-tutorial/view-encapsulation-tutorial.module';
 import { ROUTES } from './app.routs';
 import { NgrxTutorialModule } from './ngrx-tutorial/ngrx-tutorial.module';
+import { GraphQLModule } from './apollo/graphql.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,13 +24,13 @@ import { NgrxTutorialModule } from './ngrx-tutorial/ngrx-tutorial.module';
     BrowserAnimationsModule,
     MaterialModule,
     RouterModule.forRoot(ROUTES),
-    GraphQLModule,
     HttpClientModule,
     GithubModule,
     LoginModule,
     UserModule,
     ViewEncapsulationTutorialModule,
     NgrxTutorialModule,
+    GraphQLModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

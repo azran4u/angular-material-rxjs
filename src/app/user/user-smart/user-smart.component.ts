@@ -1,23 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
-import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { User } from '../model/user.model';
+import { UserService } from '../service/user.service';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-user-smart',
   templateUrl: './user-smart.component.html',
   styleUrls: ['./user-smart.component.less'],
 })
-export class UserSmartComponent implements OnInit {
+export class UserSmartComponent {
   users$: Observable<ApolloQueryResult<User[]>>;
   constructor(private userService: UserService) {
     this.users$ = this.userService.getAll();
-  }
-
-  ngOnInit(): void {
-    // this.users$.subscribe((res) => {
-    //   debugger;
-    // });
   }
 
   delete(user: User) {

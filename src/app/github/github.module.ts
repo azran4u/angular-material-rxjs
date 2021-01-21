@@ -6,7 +6,6 @@ import { GithubService } from './services/github.service';
 import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSizePipe } from './pipes/file-size.pipe';
-import { RouterModule, Routes } from '@angular/router';
 
 @NgModule({
   declarations: [

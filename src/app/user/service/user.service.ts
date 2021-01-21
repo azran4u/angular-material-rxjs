@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { Apollo, gql } from 'apollo-angular';
-import { User } from './user.model';
+import { User } from '../model/user.model';
 import { Observable } from 'rxjs';
 import { FetchResult } from '@apollo/client/core';
 
@@ -12,7 +12,7 @@ export class UserService {
   constructor(private apollo: Apollo) {}
 
   getAll(): Observable<ApolloQueryResult<User[]>> {
-    return this.apollo.watchQuery<User[]>({
+    return this.apollo.use('user').watchQuery<User[]>({
       query: gql`
         query getAll {
           getAllUsers {
@@ -35,7 +35,7 @@ export class UserService {
         }
       }
     `;
-    return this.apollo.mutate({
+    return this.apollo.use('user').mutate({
       mutation: mutation,
       variables: {
         id: id,
@@ -52,7 +52,7 @@ export class UserService {
         }
       }
     `;
-    return this.apollo.mutate({
+    return this.apollo.use('user').mutate({
       mutation: mutation,
       variables: {
         user: user,

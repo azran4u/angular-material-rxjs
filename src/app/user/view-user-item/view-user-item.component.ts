@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../user.model';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-view-user-item',

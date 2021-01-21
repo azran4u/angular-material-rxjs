@@ -6,6 +6,7 @@
 */
 {
   "files": [],
+  "exclude": ["src/app/github/mock/github.repository.mock.ts"],
   "references": [
     {
       "path": "./tsconfig.app.json"

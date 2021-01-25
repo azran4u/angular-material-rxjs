@@ -11,6 +11,9 @@ export const environment = {
   user: {
     uri: 'http://localhost:4000/',
   },
+  counter: {
+    uri: 'http://localhost:4000/',
+  },
 };
 
 /*

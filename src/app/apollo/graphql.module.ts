@@ -33,15 +33,9 @@ export function createNamedApollo(
       link: httpLink.create({ uri: config.getConfig().user.uri }),
       cache: new InMemoryCache(),
     },
-    github2: {
-      name: 'github2',
-      link: httpLink.create({
-        uri: config.getConfig().github.uri,
-        headers: new HttpHeaders().set(
-          'Authorization',
-          `Bearer ${config.getConfig().github.token}`
-        ),
-      }),
+    counter: {
+      name: 'counter',
+      link: httpLink.create({ uri: config.getConfig().counter.uri }),
       cache: new InMemoryCache(),
     },
   };
@@ -63,39 +57,3 @@ export function createNamedApollo(
   ],
 })
 export class GraphQLModule {}
-
-// export function createApollo(
-//   httpLink: HttpLink,
-//   config: ConfigService
-// ): ApolloClientOptions<any> {
-//   const { url, token } = config.getGithubConfig();
-//   const http = httpLink.create({
-//     uri: url,
-//     headers: new HttpHeaders().set('Authorization', `Bearer ${token}`),
-//   });
-
-//   const cache = new InMemoryCache();
-
-//   return {
-//     link: http,
-//     cache,
-//     defaultOptions: {
-//       watchQuery: {
-//         errorPolicy: 'all',
-//       },
-//     },
-//   };
-// }
-
-// @NgModule({
-//   imports: [HttpClientModule],
-//   exports: [HttpClientModule, HttpLinkModule],
-//   providers: [
-//     {
-//       provide: APOLLO_OPTIONS,
-//       useFactory: createApollo,
-//       deps: [HttpLink, ConfigService],
-//     },
-//   ],
-// })
-// export class GithubGraphQLModule {}

@@ -11,6 +11,7 @@ import { CounterViewComponent } from './counter-view/counter-view.component';
 import { SmartOneComponent } from './smart-one/smart-one.component';
 import { SmartTwoComponent } from './smart-two/smart-two.component';
 import { CountStore } from './store/count.model';
+import { GraphQLModule } from '../apollo/graphql.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CountStore } from './store/count.model';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     StoreModule.forRoot<CountStore>({ count: counterReducer }),
+    GraphQLModule,
   ],
   exports: [NgrxParentComponent],
 })

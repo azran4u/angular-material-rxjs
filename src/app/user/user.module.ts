@@ -6,19 +6,19 @@ import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './service/user.service';
-import { UserSmartStoreComponent } from './user-smart-store/user-smart-store.component';
-// import { GraphqlModule } from './graphql/graphql.module';
+import { GraphQLModule } from '../apollo/graphql.module';
 
 @NgModule({
-  declarations: [ViewUserItemComponent, UserSmartComponent, UserSmartStoreComponent],
+  declarations: [ViewUserItemComponent, UserSmartComponent],
   imports: [
     CommonModule,
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
+    GraphQLModule,
   ],
   providers: [UserService],
-  exports: [UserSmartComponent],
+  exports: [],
 })
 export class UserModule {}

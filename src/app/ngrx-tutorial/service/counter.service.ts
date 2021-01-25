@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ApolloQueryResult, FetchResult } from '@apollo/client';
+import { ApolloQueryResult, FetchResult } from '@apollo/client/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Counter } from '../model/counter.model';
 import { Observable } from 'rxjs';

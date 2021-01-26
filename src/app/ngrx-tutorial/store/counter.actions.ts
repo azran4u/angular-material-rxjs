@@ -1,5 +1,11 @@
 import { createAction } from '@ngrx/store';
 
-export const increment = createAction(`[Counter] Increment`);
-export const decrement = createAction(`[Counter] Decrement`);
-export const reset = createAction(`[Counter] Reset`);
+export enum CounterActions {
+  INCREMENT = '[Counter] Increment',
+  DECREMENT = '[Counter] Decrement',
+  RESET = '[Counter] Reset'  
+}
+
+export const increment = createAction(CounterActions.INCREMENT);
+export const decrement = createAction(CounterActions.DECREMENT);
+export const reset = createAction(CounterActions.RESET);

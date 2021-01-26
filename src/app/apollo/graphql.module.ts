@@ -37,6 +37,11 @@ export function createNamedApollo(
       name: 'counter',
       link: httpLink.create({ uri: config.getConfig().counter.uri }),
       cache: new InMemoryCache(),
+      defaultOptions: {
+        query: {
+          fetchPolicy: 'no-cache',
+        },
+      },
     },
   };
 }

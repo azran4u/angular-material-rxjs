@@ -14,35 +14,11 @@ import { getCounter } from '../store/counter.selector';
   templateUrl: './smart-one.component.html',
   styleUrls: ['./smart-one.component.less'],
 })
-export class SmartOneComponent implements OnInit, OnDestroy {
+export class SmartOneComponent {
   count$: Observable<number>;
-  counterSubscription: Subscription;
-  intervalId: NodeJS.Timeout;
 
-  constructor(
-    private store: Store<CountStore>,
-    private counterService: CounterService
-  ) {
+  constructor(private store: Store<CountStore>) {
     this.count$ = this.store.select(getCounter).pipe(delay(1000));
-  }
-  ngOnDestroy(): void {
-    this.counterSubscription.unsubscribe();
-    if (this.intervalId) clearInterval(this.intervalId);
-  }
-  ngOnInit(): void {
-    this.intervalId = setInterval(async () => {
-      this.counterSubscription = this.counterService.getCounter().subscribe(
-        (res: ApolloQueryResult<Counter>) => {
-          console.log(res.data['getCounter'].value);
-        },
-        (error) => {
-          console.error(error);
-        },
-        () => {
-          console.log(`complete`);
-        }
-      );
-    }, 2000);
   }
 
   increment() {

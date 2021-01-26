@@ -12,6 +12,8 @@ import { SmartOneComponent } from './smart-one/smart-one.component';
 import { SmartTwoComponent } from './smart-two/smart-two.component';
 import { CountStore } from './store/count.model';
 import { GraphQLModule } from '../apollo/graphql.module';
+import { EffectsModule } from '@ngrx/effects';
+import { CounterEffects } from './store/counter.effects';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { GraphQLModule } from '../apollo/graphql.module';
     ReactiveFormsModule,
     StoreModule.forRoot<CountStore>({ count: counterReducer }),
     GraphQLModule,
+    EffectsModule.forRoot([CounterEffects]),
   ],
   exports: [NgrxParentComponent],
 })

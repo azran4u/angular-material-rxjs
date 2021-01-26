@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { APOLLO_NAMED_OPTIONS, APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { InMemoryCache } from '@apollo/client/core';
+import { InMemoryCache, split } from '@apollo/client/core';
 import { ApolloClientOptions } from '@apollo/client/core';
 import { HttpLinkModule } from 'apollo-angular-link-http';
 import { ConfigService } from '../config/services/config.service';
+import { WebSocketLink } from '@apollo/client/link/ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 export function createDefaultApollo(
   httpLink: HttpLink,
@@ -27,6 +29,18 @@ export function createNamedApollo(
   httpLink: HttpLink,
   config: ConfigService
 ): Record<string, ApolloClientOptions<any>> {
+  const http = httpLink.create({
+    uri: config.getConfig().counter.uri,
+  });
+
+  // Create a WebSocket link:
+  const ws = new WebSocketLink({
+    uri: config.getConfig().counter.ws,
+    options: {
+      reconnect: true,
+    },
+  });
+
   return {
     user: {
       name: 'user',
@@ -35,7 +49,18 @@ export function createNamedApollo(
     },
     counter: {
       name: 'counter',
-      link: httpLink.create({ uri: config.getConfig().counter.uri }),
+      link: split(
+        // split based on operation type
+        ({ query }) => {
+          const definition = getMainDefinition(query);
+          return (
+            definition.kind === 'OperationDefinition' &&
+            definition.operation === 'subscription'
+          );
+        },
+        ws,
+        http
+      ),
       cache: new InMemoryCache(),
       defaultOptions: {
         query: {

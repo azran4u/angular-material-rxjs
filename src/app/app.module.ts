@@ -16,6 +16,7 @@ import { ViewEncapsulationTutorialModule } from './view-encapsulation-tutorial/v
 import { ROUTES } from './app.routs';
 import { NgrxTutorialModule } from './ngrx-tutorial/ngrx-tutorial.module';
 import { GraphQLModule } from './apollo/graphql.module';
+import { RxjsTutorialModule } from './rxjs-tutorial/rxjs-tutorial.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { GraphQLModule } from './apollo/graphql.module';
     UserModule,
     ViewEncapsulationTutorialModule,
     NgrxTutorialModule,
+    RxjsTutorialModule,
     GraphQLModule,
   ],
   providers: [AuthGuard],

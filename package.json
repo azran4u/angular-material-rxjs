@@ -38,6 +38,7 @@
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "rxjs": "~6.5.5",
+    "subscriptions-transport-ws": "^0.9.18",
     "tslib": "^2.1.0",
     "zone.js": "~0.10.3"
   },

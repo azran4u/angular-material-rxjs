@@ -10,6 +10,8 @@
   "exclude": [
     "src/test.ts",
     "src/**/*.spec.*",
-    "src/environments/environment.prod.ts"
+    "src/environments/environment.prod.ts",
+    "src/app/config/model/github.config.model.ts",
+    "src/app/github/mock/github.repository.mock.ts"
   ]
 }

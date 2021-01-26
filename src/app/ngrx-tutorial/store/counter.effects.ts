@@ -7,25 +7,43 @@ import { CounterActions } from './counter.actions';
 
 @Injectable()
 export class CounterEffects {
-  get$ = createEffect(
+  changes$ = createEffect(
     () =>
-      interval(1000).pipe(
-        mergeMap(() =>
-          this.counterService.getCounter().pipe(
-            tap((res) =>
-              console.log(
-                `effect: backend value is ${res.data['getCounter'].value}`
-              )
-            ),
-            catchError((error) => {
-              console.error(`effect ${error}`);
-              return EMPTY;
-            })
-          )
-        )
+      this.counterService.counterChanges().pipe(
+        tap((res) => {
+          if (res.data['counterChanged']) {
+            console.log(
+              `effect recieved data from websocket ${res.data['counterChanged'].value}`
+            );
+          }
+        }),
+        catchError((error) => {
+          console.error(`effect ${error}`);
+          return EMPTY;
+        })
       ),
     { dispatch: false }
   );
+
+  // get$ = createEffect(
+  //   () =>
+  //     interval(1000).pipe(
+  //       mergeMap(() =>
+  //         this.counterService.getCounter().pipe(
+  //           tap((res) =>
+  //             console.log(
+  //               `effect: backend value is ${res.data['getCounter'].value}`
+  //             )
+  //           ),
+  //           catchError((error) => {
+  //             console.error(`effect ${error}`);
+  //             return EMPTY;
+  //           })
+  //         )
+  //       )
+  //     ),
+  //   { dispatch: false }
+  // );
 
   increment$ = createEffect(
     () =>

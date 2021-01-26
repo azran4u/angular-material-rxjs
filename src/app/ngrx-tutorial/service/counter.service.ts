@@ -22,6 +22,18 @@ export class CounterService {
     });
   }
 
+  counterChanges(): Observable<FetchResult<Counter>> {
+    return this.apollo.use('counter').subscribe({
+      query: gql`
+        subscription counterChanged {
+          counterChanged {
+            value
+          }
+        }
+      `,
+    });
+  }
+
   increment(): Observable<FetchResult<Counter>> {
     const mutation = gql`
       mutation incrementCounter {

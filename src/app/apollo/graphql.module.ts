@@ -34,8 +34,15 @@ export function createNamedApollo(
   });
 
   // Create a WebSocket link:
-  const ws = new WebSocketLink({
+  const wsCounter = new WebSocketLink({
     uri: config.getConfig().counter.ws,
+    options: {
+      reconnect: true,
+    },
+  });
+
+  const wsUsers = new WebSocketLink({
+    uri: config.getConfig().user.ws,
     options: {
       reconnect: true,
     },
@@ -44,8 +51,25 @@ export function createNamedApollo(
   return {
     user: {
       name: 'user',
-      link: httpLink.create({ uri: config.getConfig().user.uri }),
+      link: split(
+        // split based on operation type
+        ({ query }) => {
+          const definition = getMainDefinition(query);
+          return (
+            definition.kind === 'OperationDefinition' &&
+            definition.operation === 'subscription'
+          );
+        },
+        wsUsers,
+        http
+      ),
+      // link: httpLink.create({ uri: config.getConfig().user.uri }),
       cache: new InMemoryCache(),
+      defaultOptions: {
+        query: { fetchPolicy: 'no-cache' },
+        mutate: { fetchPolicy: 'no-cache' },
+        watchQuery: { fetchPolicy: 'no-cache' },
+      },
     },
     counter: {
       name: 'counter',
@@ -58,7 +82,7 @@ export function createNamedApollo(
             definition.operation === 'subscription'
           );
         },
-        ws,
+        wsCounter,
         http
       ),
       cache: new InMemoryCache(),

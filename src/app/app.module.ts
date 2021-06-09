@@ -17,6 +17,7 @@ import { ROUTES } from './app.routs';
 import { NgrxTutorialModule } from './ngrx-tutorial/ngrx-tutorial.module';
 import { GraphQLModule } from './apollo/graphql.module';
 import { RxjsTutorialModule } from './rxjs-tutorial/rxjs-tutorial.module';
+import { BlogModule } from './blog/blog.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { RxjsTutorialModule } from './rxjs-tutorial/rxjs-tutorial.module';
     NgrxTutorialModule,
     RxjsTutorialModule,
     GraphQLModule,
+    BlogModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { UpdatesComponent } from './blog/user/components/updates/updates.component';
 import { GithubSmartComponent } from './github/smart/github-smart/github-smart.component';
 import { LoginSmartComponent } from './login/login-smart/login-smart.component';
 import { LogoutControllerComponent } from './login/logout-controller/logout-controller.component';
@@ -40,6 +41,11 @@ export const ROUTES: Routes = [
     path: 'rxjs',
     pathMatch: 'full',
     component: RxjsTutorialComponent,
+  },
+  {
+    path: 'updates',
+    pathMatch: 'full',
+    component: UpdatesComponent,
   },
   {
     path: 'ngrx',

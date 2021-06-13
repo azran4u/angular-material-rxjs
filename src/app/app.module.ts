@@ -18,6 +18,11 @@ import { NgrxTutorialModule } from './ngrx-tutorial/ngrx-tutorial.module';
 import { GraphQLModule } from './apollo/graphql.module';
 import { RxjsTutorialModule } from './rxjs-tutorial/rxjs-tutorial.module';
 import { BlogModule } from './blog/blog.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { AppState, reducers, metaReducers } from './app.state';
+import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +40,13 @@ import { BlogModule } from './blog/blog.module';
     RxjsTutorialModule,
     GraphQLModule,
     BlogModule,
+    StoreModule.forRoot<AppState>(reducers, { metaReducers }),
+    EffectsModule.forRoot([]),
+    environment.production
+      ? []
+      : StoreDevtoolsModule.instrument({
+          name: 'angular-material-rxjs',
+        }),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

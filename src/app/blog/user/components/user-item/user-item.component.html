@@ -1,0 +1,39 @@
+<div *ngIf="user" class="row">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field class="item">
+      <mat-label>ID</mat-label>
+      <input formControlName="id" matInput />
+    </mat-form-field>
+    <mat-form-field class="item">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      <button
+        type="button"
+        mat-button
+        matSuffix
+        mat-icon-button
+        (click)="clearName()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+      type="submit"
+      class="item"
+      mat-raised-button
+      color="accent"
+      [disabled]="!formGroup.valid"
+    >
+      Edit
+    </button>
+    <button
+      type="button"
+      class="item"
+      mat-raised-button
+      color="warn"
+      (click)="delete()"
+    >
+      Delete
+    </button>
+  </form>
+</div>

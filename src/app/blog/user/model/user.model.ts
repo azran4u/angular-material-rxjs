@@ -6,3 +6,5 @@ export interface User {
 }
 
 export interface UserInput extends Omit<User, 'id'> {}
+
+

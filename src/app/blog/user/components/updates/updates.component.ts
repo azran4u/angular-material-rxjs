@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { UsersService } from '../../users.service';
+import { Store } from '@ngrx/store';
+import { loaded } from '../../store/user.actions';
+import { UsersState } from '../../store/user.model';
 
 @Component({
   selector: 'app-updates',
@@ -9,22 +9,11 @@ import { UsersService } from '../../users.service';
   styleUrls: ['./updates.component.less'],
 })
 export class UpdatesComponent implements OnInit {
-  constructor(private userService: UsersService) {}
+  constructor(private store: Store<UsersState>) {}
 
   ngOnInit(): void {
-    this.userService
-      .subscribeToUsersInAgeRange()
-      .pipe(
-        map((value) => {
-          console.log(JSON.stringify(value, null, 4));
-        }),
-        catchError((error, caught) => {
-          console.error(error);
-          return of(error);
-        })
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
+    this.store.dispatch(
+      loaded({ filter: { ids: [], age: { from: 0, to: 10 } } })
+    );
   }
 }

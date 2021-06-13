@@ -10,10 +10,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CounterViewComponent } from './counter-view/counter-view.component';
 import { SmartOneComponent } from './smart-one/smart-one.component';
 import { SmartTwoComponent } from './smart-two/smart-two.component';
-import { CountStore } from './store/count.model';
 import { GraphQLModule } from '../apollo/graphql.module';
 import { EffectsModule } from '@ngrx/effects';
 import { CounterEffects } from './store/counter.effects';
+import {
+  NgrxTutorialState,
+  NGRX_TUTORIAL_FEATURE_NAME,
+} from './ngrxTutorial.state';
 
 @NgModule({
   declarations: [
@@ -27,9 +30,11 @@ import { CounterEffects } from './store/counter.effects';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot<CountStore>({ count: counterReducer }),
+    StoreModule.forFeature<NgrxTutorialState>(NGRX_TUTORIAL_FEATURE_NAME, {
+      counter: counterReducer,
+    }),
     GraphQLModule,
-    EffectsModule.forRoot([CounterEffects]),
+    EffectsModule.forFeature([CounterEffects]),
   ],
   exports: [NgrxParentComponent],
 })

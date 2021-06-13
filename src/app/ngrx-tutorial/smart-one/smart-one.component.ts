@@ -1,13 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApolloQueryResult } from '@apollo/client/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
-import { Counter } from '../model/counter.model';
-import { CounterService } from '../service/counter.service';
-import { CountStore } from '../store/count.model';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { CountState, NgrxTutorialState } from '../ngrxTutorial.state';
 import { decrement, increment, reset } from '../store/counter.actions';
-import { getCounter } from '../store/counter.selector';
+import { counterSelector } from '../store/counter.selector';
 
 @Component({
   selector: 'app-smart-one',
@@ -17,8 +15,8 @@ import { getCounter } from '../store/counter.selector';
 export class SmartOneComponent {
   count$: Observable<number>;
 
-  constructor(private store: Store<CountStore>) {
-    this.count$ = this.store.select(getCounter).pipe(delay(1000));
+  constructor(private store: Store<NgrxTutorialState>) {
+    this.count$ = this.store.select(counterSelector).pipe(delay(1000));
   }
 
   increment() {

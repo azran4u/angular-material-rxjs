@@ -1,11 +1,11 @@
 import { createSelector } from '@ngrx/store';
-import { CountState, CountStore } from './count.model';
+import { CountState, selectCounterState } from '../ngrxTutorial.state';
 
-export function counterFeatureSelector(state: CountStore) {
-  return state.count;
+export function counterFeatureSelector(state: CountState) {
+  return state.counter;
 }
 
-export const getCounter = createSelector(
-  counterFeatureSelector,
+export const counterSelector = createSelector(
+  selectCounterState,
   (state: CountState) => state.counter
 );

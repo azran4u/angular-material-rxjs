@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import _ from 'lodash';
 import { UsersChangesSubscriptionFilter } from '../model/usersChangesSubscriptionFilter';
 import { EntityUpdate } from '../model/entityUpdate';
+import { Ids } from '../model/ids';
+import { User } from '../model/user.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +24,7 @@ export class UsersService {
       usersChanges(
         filter: { age: { from: ${filter.age.from}, to: ${
       filter.age.to
-    } }, ids: [${_.join(
-      filter.ids.map((id) => `"${id}"`),
-      ','
-    )}] }
+    } }, ids: ${this.createIdsForQuery(filter.ids)} }
       ) {
         updated
         deleted
@@ -35,5 +35,29 @@ export class UsersService {
       query,
       errorPolicy: 'all',
     });
+  }
+
+  getUsersByIds(ids: Ids): Observable<FetchResult<{ getUsersByIds: User[] }>> {
+    const query = gql`
+      query getUsersByIds {
+        getUsersByIds(ids: ${this.createIdsForQuery(ids)}) {
+          id
+          name
+          age
+          posts
+        }
+      }
+    `;
+    return this.apollo.use('user').subscribe({
+      query,
+      errorPolicy: 'all',
+    });
+  }
+
+  private createIdsForQuery(ids: Ids): string {
+    return `[${_.join(
+      ids.map((id) => `"${id}"`),
+      ','
+    )}]`;
   }
 }

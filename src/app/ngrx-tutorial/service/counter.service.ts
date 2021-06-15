@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApolloQueryResult, FetchResult } from '@apollo/client/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Counter } from '../model/counter.model';
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,15 +23,16 @@ export class CounterService {
   }
 
   counterChanges(): Observable<FetchResult<Counter>> {
-    return this.apollo.use('counter').subscribe({
-      query: gql`
-        subscription counterChanged {
-          counterChanged {
-            value
-          }
-        }
-      `,
-    });
+    return EMPTY;
+    // return this.apollo.use('counter').subscribe({
+    //   query: gql`
+    //     subscription counterChanged {
+    //       counterChanged {
+    //         value
+    //       }
+    //     }
+    //   `,
+    // });
   }
 
   increment(): Observable<FetchResult<Counter>> {

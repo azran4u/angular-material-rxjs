@@ -29,15 +29,19 @@ export function createNamedApollo(
   httpLink: HttpLink,
   config: ConfigService
 ): Record<string, ApolloClientOptions<any>> {
-  const http = httpLink.create({
+  const httpCounter = httpLink.create({
     uri: config.getConfig().counter.uri,
+  });
+
+  const httpUser = httpLink.create({
+    uri: config.getConfig().user.uri,
   });
 
   // Create a WebSocket link:
   const wsCounter = new WebSocketLink({
     uri: config.getConfig().counter.ws,
     options: {
-      reconnect: true,
+      reconnect: false,
     },
   });
 
@@ -61,7 +65,7 @@ export function createNamedApollo(
           );
         },
         wsUsers,
-        http
+        httpUser
       ),
       // link: httpLink.create({ uri: config.getConfig().user.uri }),
       cache: new InMemoryCache(),
@@ -83,13 +87,13 @@ export function createNamedApollo(
           );
         },
         wsCounter,
-        http
+        httpCounter
       ),
       cache: new InMemoryCache(),
       defaultOptions: {
-        query: {
-          fetchPolicy: 'no-cache',
-        },
+        query: { fetchPolicy: 'no-cache' },
+        mutate: { fetchPolicy: 'no-cache' },
+        watchQuery: { fetchPolicy: 'no-cache' },
       },
     },
   };

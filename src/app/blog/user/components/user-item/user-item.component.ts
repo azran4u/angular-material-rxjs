@@ -1,40 +1,40 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../../model/user.model';
+// import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { User } from '../../model/user.model';
 
-@Component({
-  selector: 'app-blog-user-components-user-item',
-  templateUrl: './user-item.component.html',
-  styleUrls: ['./user-item.component.less'],
-})
-export class UserItemComponent implements OnInit {
-  @Input() user: User;
-  @Output() deleted = new EventEmitter<void>();
-  @Output() edited = new EventEmitter<User>();
+// @Component({
+//   selector: 'app-blog-user-components-user-item',
+//   templateUrl: './user-item.component.html',
+//   styleUrls: ['./user-item.component.less'],
+// })
+// export class UserItemComponent implements OnInit {
+//   @Input() user: User;
+//   @Output() deleted = new EventEmitter<void>();
+//   @Output() edited = new EventEmitter<User>();
 
-  constructor(private formBuilder: FormBuilder) {}
+//   constructor(private formBuilder: FormBuilder) {}
 
-  formGroup: FormGroup;
+//   formGroup: FormGroup;
 
-  ngOnInit(): void {
-    this.formGroup = this.formBuilder.group({
-      id: [{ value: this.user.id, disabled: true }, Validators.required],
-      name: [this.user.name, Validators.required],
-    });
-  }
+//   ngOnInit(): void {
+//     this.formGroup = this.formBuilder.group({
+//       id: [{ value: this.user.id, disabled: true }, Validators.required],
+//       name: [this.user.name, Validators.required],
+//     });
+//   }
 
-  delete() {
-    console.log(`delete id ${this.user.id}`);
-    this.deleted.emit();
-  }
+//   delete() {
+//     console.log(`delete id ${this.user.id}`);
+//     this.deleted.emit();
+//   }
 
-  onSubmit() {
-    const input: User = this.formGroup.getRawValue();
-    console.log(`edit name ${JSON.stringify(input)}`);
-    this.edited.emit(input);
-  }
+//   onSubmit() {
+//     const input: User = this.formGroup.getRawValue();
+//     console.log(`edit name ${JSON.stringify(input)}`);
+//     this.edited.emit(input);
+//   }
 
-  clearName() {
-    this.formGroup.get('name').setValue('');
-  }
-}
+//   clearName() {
+//     this.formGroup.get('name').setValue('');
+//   }
+// }

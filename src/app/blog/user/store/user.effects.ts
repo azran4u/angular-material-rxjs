@@ -1,14 +1,22 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
+import { FetchResult } from 'apollo-link';
 import { EMPTY } from 'rxjs';
-import { catchError, concatMap, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { BlogState } from '../../blog.state';
+import { User } from '../model/user.model';
 import { UsersService } from '../services/users.service';
-import { loaded } from './user.actions';
+import { dataUpdate, loaded, UserActions } from './user.actions';
 
 @Injectable()
 export class UserEffects {
-  constructor(private actions$: Actions, private userService: UsersService) {}
+  constructor(
+    private actions$: Actions,
+    private userService: UsersService,
+    private store: Store<BlogState>
+  ) {}
 
   changes$ = createEffect(
     () =>
@@ -25,13 +33,19 @@ export class UserEffects {
               this.userService
                 .getUsersByIds(res.data.usersChanges.updated)
                 .pipe(
-                  tap((res) =>
+                  map<FetchResult<{ getUsersByIds: User[] }>, User[]>((res) => {
                     console.log(
                       `user effect fetched users ${JSON.stringify(
                         res.data.getUsersByIds
                       )}`
-                    )
-                  ),
+                    );
+                    return res.data.getUsersByIds;
+                  }),
+                  tap((res) => {
+                    this.store.dispatch(
+                      dataUpdate({ updated: res, deleted: [] })
+                    );
+                  }),
                   catchError((error: HttpErrorResponse) => {
                     console.error(`user effect error ${error.message}`);
                     return EMPTY;

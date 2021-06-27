@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { loaded } from '../../store/user.actions';
+import { fetchUsersByIds } from '../../store/user.actions';
 import { UsersState } from '../../store/user.model';
 
 @Component({
@@ -13,7 +13,9 @@ export class UpdatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(
-      loaded({ filter: { ids: [], age: { from: 0, to: 10 } } })
+      fetchUsersByIds({
+        ids: ['user1', 'user2'],
+      })
     );
   }
 }

@@ -1,19 +1,20 @@
 import { createAction, props } from '@ngrx/store';
+import { ID, Ids } from '../model/ids';
 import { UsersChangesSubscriptionFilter } from '../model/usersChangesSubscriptionFilter';
 import { UserUpdate } from '../model/userUpdate';
 
 export enum UserActions {
-  BLOG_USER_DATA_UPDATE = '[BLOG_USER] DataUpdate',
-  BLOG_USER_MODULE_LOADED = '[BLOG_USER] LOADED',
-  BLOG_USER_MODULE_CLOSED = '[BLOG_USER] CLOSED',
+  FETCH_USERS_BY_IDS = '[BLOG_USER] FETCH_USERS_BY_IDS',
+  REMOVE_USERS_BY_IDS = '[BLOG_USER] LOADED',
+  GET_USERS_BY_IDS = '[BLOG_USER] CLOSED',
 }
 
-export const dataUpdate = createAction(
-  UserActions.BLOG_USER_DATA_UPDATE,
-  props<UserUpdate>()
+export const fetchUsersByIds = createAction(
+  UserActions.FETCH_USERS_BY_IDS,
+  props<ID>()
 );
-export const loaded = createAction(
-  UserActions.BLOG_USER_MODULE_LOADED,
-  props<{ filter: UsersChangesSubscriptionFilter }>()
-);
-export const closed = createAction(UserActions.BLOG_USER_MODULE_CLOSED);
+// export const loadUserDataByFilter = createAction(
+//   UserActions.BLOG_USER_MODULE_LOADED,
+//   props<{ filter: UsersChangesSubscriptionFilter }>()
+// );
+// export const closed = createAction(UserActions.BLOG_USER_MODULE_CLOSED);

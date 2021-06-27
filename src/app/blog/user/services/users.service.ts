@@ -7,7 +7,6 @@ import { UsersChangesSubscriptionFilter } from '../model/usersChangesSubscriptio
 import { EntityUpdate } from '../model/entityUpdate';
 import { Ids } from '../model/ids';
 import { User } from '../model/user.model';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
